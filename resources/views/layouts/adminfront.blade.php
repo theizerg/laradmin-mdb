@@ -64,6 +64,19 @@
     <script src="{{asset('js/material/material-dashboard.js')}}"></script>
     @stack('scripts')
 
+     <style>
+    
+    #body{
+
+        background-image: url("{{asset('/img/fondo/123.jpg') }}");    
+        background-attachment: fixed;
+        background-position: center center;
+        background-size: cover;
+            
+    }
+    
+    </style>
+
 
   </body>
 </html>

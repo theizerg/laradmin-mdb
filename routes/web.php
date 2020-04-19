@@ -16,7 +16,7 @@
 });*/
 
 
-Route::get('/correo', 'CorreoController@index')->name('correo');
+Route::get('/register/verify/{code}', 'GuestController@verify');
 
 Auth::routes();
 

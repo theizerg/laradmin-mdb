@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -18,7 +19,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
 
     /**
@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,6 +35,41 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest', ['except' => 'logout']);
     }
+
+
+    public function username()
+    {
+        return 'username';
+    }
+
+
+
+    protected function credentials(Request $request)
+    {
+        //dd($request);
+       return array_merge($request->only($this->username(), 'password'));
+    }
+
+
+
+
+    protected function sendLoginResponse(Request $request)
+    {
+     
+       
+       
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        $notification = array(
+            'message' => '¡Inicio de sesión abierto!',
+            'alert-type' => 'success'
+        );
+       
+        return Redirect::to('/')->with($notification);
+    }
+
 }
