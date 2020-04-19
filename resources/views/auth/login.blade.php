@@ -41,14 +41,7 @@
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">
                                <i class="fas fa-sign-in-alt"></i> {{ __('Entrar') }}
-                            </button>
-
-                            <div class="col-md-6">
-                                <a class="btn btn-primary" href="{{ route('register') }}">
-                                 {{ __('Registrar') }}
-                                </a>
-                            </div>
-                            
+                            </button>                            
                         </div>
                     </div>
                     </form>
